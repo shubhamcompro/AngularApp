@@ -9,7 +9,7 @@ app.listen(process.env.PORT || 8080);
 
 
 app.get("/*", function (req, res) {
-  res.sendfile(path.join(__dirname + '/dist/index.html'))
+  res.sendfile(path.join(__dirname + '/dist/Flipkart/index.html'))
 });
 
 console.log('App Started');
