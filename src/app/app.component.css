@@ -1,0 +1,7 @@
+
+/*Relative to .nodemodules*/
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+main{
+  padding-top:100px;
+}
