@@ -12,7 +12,7 @@ import {Product} from '../../models/product';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-  product = {};
+  product = {} as Product;
   id;
 
   constructor(
@@ -25,9 +25,8 @@ export class ProductFormComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.productService.get(this.id).take(1).subscribe(product => {
+      this.productService.get(this.id).take(1).subscribe((product: Product) => {
         this.product = product;
-        console.log(product);
       });
     }
   }
