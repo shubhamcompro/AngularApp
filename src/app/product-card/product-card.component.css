@@ -1,0 +1,17 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.card-footer {
+  padding: 0;
+}
+
+.card {
+  margin-bottom: 30px;
+}
+
+.card-footer button {
+  cursor: pointer;
+}
+
+#add-to-cart{
+  width: 100%;
+}

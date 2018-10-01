@@ -1,0 +1,8 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-size: cover;
+}

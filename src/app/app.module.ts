@@ -1,3 +1,4 @@
+import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +17,21 @@ import {OrderSuccessComponent} from './order-success/order-success.component';
 import {MyOrdersComponent} from './my-orders/my-orders.component';
 import {AdminProductsComponent} from './admin/admin-products/admin-products.component';
 import {AdminOrdersComponent} from './admin/admin-orders/admin-orders.component';
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from './login/login.component';
+import {AuthService} from './auth.service';
+import {AuthGuard} from './auth-guard.service';
+import {UserService} from './user.service';
+import {AdminGuard} from './admin-guard.service';
+import {ProductFormComponent} from './admin/product-form/product-form.component';
+import {CategoryService} from './category.service';
+import {FormsModule} from '@angular/forms';
+import {ProductService} from './product.service';
+import {CustomFormsModule} from 'ng2-validation';
+import {DataTableModule} from 'angular-6-datatable';
+import {ProductFilterComponent} from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import {ShoppingCartService} from './shopping-cart.service';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -30,26 +45,60 @@ import { LoginComponent } from './login/login.component';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
+    CustomFormsModule,
+    FormsModule,
+    DataTableModule,
+    HttpModule,
     BrowserModule,
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
+      {path: '', component: ProductsComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'shopping-carts', component: ShoppingCartComponent},
-      {path: 'check-out', component: CheckOutComponent},
-      {path: 'order-success', component: OrderSuccessComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'admin/products', component: AdminProductsComponent},
-      {path: 'admin/orders', component: AdminProductsComponent},
+      {
+        path: 'check-out',
+        component: CheckOutComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'order-success',
+        component: OrderSuccessComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'admin/products',
+        component: AdminProductsComponent,
+        canActivate: [AuthGuard, AdminGuard]
+      },
+      {
+        path: 'admin/products/new',
+        component: ProductFormComponent,
+        canActivate: [AuthGuard, AdminGuard]
+      },
+      {
+        path: 'admin/products/:id',
+        component: ProductFormComponent,
+        canActivate: [AuthGuard, AdminGuard]
+      },
+      {
+        path: 'admin/orders',
+        component: AdminProductsComponent,
+        canActivate: [AuthGuard, AdminGuard]
+      }
     ])
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

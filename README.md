@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## 3rd Party Library
+- [ng2-validation](https://github.com/yuyang041060120/ng2-validation)
+- [angular-6-datatable](https://github.com/abdulk1/angular-6-datatable)
