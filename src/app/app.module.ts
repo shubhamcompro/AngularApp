@@ -29,9 +29,11 @@ import {ProductService} from './product.service';
 import {CustomFormsModule} from 'ng2-validation';
 import {DataTableModule} from 'angular-6-datatable';
 import {ProductFilterComponent} from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
+import {ProductCardComponent} from './product-card/product-card.component';
 import {ShoppingCartService} from './shopping-cart.service';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
+import {OrderService} from './order.service';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ShippingFormComponent
   ],
   imports: [
     CustomFormsModule,
@@ -72,7 +75,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
         canActivate: [AuthGuard]
       },
       {
-        path: 'order-success',
+        path: 'order-success/:id',
         component: OrderSuccessComponent,
         canActivate: [AuthGuard]
       },
@@ -98,7 +101,15 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
       }
     ])
   ],
-  providers: [AuthService, AuthGuard, UserService, CategoryService, ProductService, ShoppingCartService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    UserService,
+    CategoryService,
+    ProductService,
+    ShoppingCartService,
+    OrderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

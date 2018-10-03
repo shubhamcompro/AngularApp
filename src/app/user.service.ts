@@ -1,4 +1,3 @@
-import {AppUser} from './models/app-user';
 import {Injectable} from '@angular/core';
 import * as firebase from 'firebase';
 import {AngularFireDatabase} from 'angularfire2/database';

@@ -51,7 +51,6 @@ export class ShoppingCartService {
       if (finalQuantity === 0) {
         this.removeCartItem(cartId, product.key);
       } else {
-        console.log('Product', product);
         item$.update({product: product, quantity: ((item ? item.quantity : 0) || 0) + change});
       }
     });

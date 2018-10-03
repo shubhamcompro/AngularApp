@@ -1,0 +1,39 @@
+<div class="container">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input #address="ngModel" ngModel name="address" id="address" type="text" class="form-control"
+             required/>
+      <div class="alert alert-danger" *ngIf="address.invalid && address.touched">
+        Address is Required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input #city="ngModel" ngModel name="city" id="city" type="text" class="form-control"
+             required/>
+      <div class="alert alert-danger" *ngIf="city.invalid && city.touched">
+        <div *ngIf="city.errors.required">City is Required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="state">State</label>
+      <input #state="ngModel" ngModel name="state" id="state" type="text" class="form-control"
+             required/>
+      <div class="alert alert-danger" *ngIf="state.invalid && state.touched">
+        <div *ngIf="state.errors.required">State is Required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="pincode">Pincode</label>
+      <input #pincode="ngModel" ngModel name="pinCode" id="pincode" type="number" class="form-control"
+             required [min]="100000" [max]="999999" />
+      <div class="alert alert-danger" *ngIf="pincode.invalid && pincode.touched">
+        <div *ngIf="pincode.errors.required">Pincode is Required.</div>
+        <div *ngIf="pincode.errors.min">Pincode is not Valid.</div>
+        <div *ngIf="pincode.errors.max">Pincode is not Valid.</div>
+      </div>
+    </div>
+    <button class="btn btn-primary mr-1 float-right" [disabled]="!f.valid" (click)="placeOrder(f.value)">Place Order</button>
+  </form>
+</div>
