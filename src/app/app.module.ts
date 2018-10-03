@@ -95,10 +95,15 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
         canActivate: [AuthGuard, AdminGuard]
       },
       {
-        path: 'admin/orders',
-        component: AdminProductsComponent,
+        path: 'admin/orders/:id',
+        component: AdminOrdersComponent,
         canActivate: [AuthGuard, AdminGuard]
-      }
+      },
+      {
+        path: 'admin/orders',
+        component: AdminOrdersComponent,
+        canActivate: [AuthGuard, AdminGuard]
+      },
     ])
   ],
   providers: [

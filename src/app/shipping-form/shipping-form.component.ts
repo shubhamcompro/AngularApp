@@ -40,7 +40,8 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
       shipping: shipping,
       items: this.cart.items,
       dateCreated: new Date().getTime().toString(),
-      userId: this.userId
+      userId: this.userId,
+      total: this.cart.totalItemsPrice
     });
     const result = await this.orderService.create(order);
     (await this.shoppingCartService.clearCart());
