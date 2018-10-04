@@ -33,7 +33,7 @@ import {ProductCardComponent} from './product-card/product-card.component';
 import {ShoppingCartService} from './shopping-cart.service';
 import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
 import {OrderService} from './order.service';
-import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import {ShippingFormComponent} from './shipping-form/shipping-form.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +72,11 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
       {
         path: 'check-out',
         component: CheckOutComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'orders',
+        component: MyOrdersComponent,
         canActivate: [AuthGuard]
       },
       {

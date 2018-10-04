@@ -33,4 +33,22 @@ export class OrderService {
   create(order: Order) {
     return this.db.list('/orders').push(order);
   }
+
+  ordersByUser(userId: string) {
+    // return this.db.list('/orders', ref => {
+    //   return ref.orderByChild('userId').equalTo(userId);
+    // }).valueChanges();
+
+    return this.db.list('/orders', ref => ref.orderByChild('userId').equalTo(userId))
+      .snapshotChanges()
+      .pipe(map(items => {           // <== new way of chaining
+        console.log(items);
+        return items.map(a => {
+          const data = a.payload.val();
+          const key = a.payload.key;
+          data['key'] = key;
+          return data;
+        });
+      }));
+  }
 }

@@ -7,6 +7,7 @@ export class Order {
   total: number;
   dateCreated: string;
   userId: string;
+  key?: string;
 
   constructor(init?: Partial<Order>) {
     Object.assign(this, init);

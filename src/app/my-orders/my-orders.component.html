@@ -1,3 +1,29 @@
-<p>
-  my-orders works!
-</p>
+<div class="container">
+  <h1>Orders</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Order Id</th>
+      <th class="text-center" style="width: 230px">Date</th>
+      <th class="text-right" style="width: 200px">Total Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of userOrders; let i = index">
+      <td>
+        {{ i +1 }}
+      </td>
+      <td>
+        {{order.key}}
+      </td>
+      <td class="text-center">
+        {{ order.dateCreated | date }}
+      </td>
+      <td class="text-right">
+        <a class="btn btn-primary">view</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
